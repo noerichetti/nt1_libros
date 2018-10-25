@@ -1,0 +1,10 @@
+﻿body {
+    height: 100%;
+}
+
+.image-bg {
+    background-image: url(../Images/biblioteca.JPG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+<div>
+    <div class="card w-25 card-align shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body">
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-lg">
+                        <label>Alias</label>
+                        <input type="text" class="form-control" id="txtAlias" placeholder="Ingrese alias">
+                        <div id="aliasError" class="invalid-tooltip">
+                            Ingrese el alias.
+                        </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-row">
+                    <div class="col-lg">
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" id="txtClave" placeholder="Ingrese contraseña">
+                        <div id="claveError" class="invalid-tooltip">
+                            Ingrese clave.
+                        </div>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="text-center">
+                    <button id="btnIngresar" type="button" class="btn btn-success">Ingresar</button>
+                    <a href="@Url.Action("Index", "Registro")" class="btn btn-outline-primary" role="button" aria-pressed="true">Registrarse</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
