@@ -1,35 +1,49 @@
-﻿@{
+﻿@model CanjeLibros.Models.Usuarios
+
+@{
     ViewBag.Title = "Login";
 }
 <div>
     <div class="card w-25 card-align shadow-lg p-3 mb-5 bg-white rounded">
         <div class="card-body">
+            @using (Html.BeginForm("Ingresar", "Login", FormMethod.Post)) { 
             <form class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-lg">
                         <label>Alias</label>
-                        <input type="text" class="form-control" id="txtAlias" placeholder="Ingrese alias">
-                        <div id="aliasError" class="invalid-tooltip">
-                            Ingrese el alias.
-                        </div>
+                        @Html.TextBox("userName", null, new { @class = "form-control", id = "txtUserName", placeholder = "Ingrese alias" })
                     </div>
                 </div>
                 <br /><br />
                 <div class="form-row">
                     <div class="col-lg">
                         <label>Contraseña</label>
-                        <input type="password" class="form-control" id="txtClave" placeholder="Ingrese contraseña">
-                        <div id="claveError" class="invalid-tooltip">
-                            Ingrese clave.
-                        </div>
+                        @Html.Password("password", null, new { @class = "form-control", id = "txtPassword", placeholder = "Ingrese contraseña" })
                     </div>
                 </div>
                 <br /><br />
+                @if (ViewBag.RegistroExitoso)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.RegistroMensaje
+                    </div>
+                }
+                @if (ViewBag.LoginError != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.LoginError
+                    </div>
+                }
+                <br /><br />
                 <div class="text-center">
-                    <button id="btnIngresar" type="button" class="btn btn-success">Ingresar</button>
-                    <a href="@Url.Action("Index", "Registro")" class="btn btn-outline-primary" role="button" aria-pressed="true">Registrarse</a>
+                    <input type="submit" class="btn btn-success" value="Ingresar" />
+                    <!--<a href="@Url.Action("Ingresar", "Login")" class="btn btn-success" role="button" aria-pressed="true">Ingresar</a>-->
                 </div>
             </form>
+                }
+            <div class="text-center">
+                <a href="@Url.Action("Index", "Registro")" class="btn btn-outline-primary" role="button" aria-pressed="true">Registrarse</a>
+            </div>
         </div>
     </div>
 </div>

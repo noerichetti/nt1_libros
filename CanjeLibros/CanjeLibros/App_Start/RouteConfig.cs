@@ -24,6 +24,24 @@ namespace CanjeLibros
                 url: "{controller}/{action}",
                 defaults: new { controller = "Registro", action = "Index" }
             );
+
+            routes.MapRoute(
+                name: "Login",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Login", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "UserCreated",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Login", action = "UserCreated", registroExitoso = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Libros",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Libroes", action = "Index" }
+            );
         }
     }
 }

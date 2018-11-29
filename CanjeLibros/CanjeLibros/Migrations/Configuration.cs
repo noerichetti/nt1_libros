@@ -5,14 +5,14 @@ namespace CanjeLibros.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CanjeLibros.Models.UsuarioDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CanjeLibros.Models.DbContextLibrosbkp>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(CanjeLibros.Models.UsuarioDBContext context)
+        protected override void Seed(CanjeLibros.Models.DbContextLibrosbkp context)
         {
             //  This method will be called after migrating to the latest version.
 

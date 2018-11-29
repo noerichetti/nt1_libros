@@ -1,0 +1,90 @@
+﻿@model CanjeLibros.Models.Libroes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Libroes</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.author)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.author)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.editorial)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.editorial)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.publishingDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.publishingDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.genre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.genre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.synopsis)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.synopsis)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.language)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.language)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.photo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.photo)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

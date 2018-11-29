@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CanjeLibros.Models.Libroes>
+
+@{
+    ViewBag.Title = "";
+}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d6d8d9;">
+    <a class="navbar-brand" href="#">Intercambia tus libros</a>
+    <div class="container">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item ">
+                <a class="nav-link" href="posibilidadesIntercambio.html">Posibilidades <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="libros.html">Libros <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline mr-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <span class="input-group-text" id="basic-addon1" style=" background-color: transparent;border:none"><i class="fas fa-search" style="font-size: 24px;"></i></span>
+        </form>
+        <div class="btn-group mr-5" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Nombre
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="#">Mi cuenta</a>
+                <a class="dropdown-item" href="#">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="d-flex flex-row flex-wrap mb-3" style="padding: 10px;">
+    @foreach (var item in Model)
+    {
+
+        <div class="card" style="width: 20rem; margin: 10px;">
+            <img class="card-img-top" src="@item.photo" height="150" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.title</h5>
+                <button id="libroDescripcion" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="right" data-content="@item.synopsis">
+                    Sinopsis
+                </button>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><small>Autor: @item.author</small></li>
+                <li class="list-group-item"><small>Editorial: @item.editorial</small></li>
+                <li class="list-group-item"><small>Fecha de Publicacion: @item.publishingDate</small></li>
+                <li class="list-group-item"><small>Genero: @item.genre</small></li>
+                <li class="list-group-item"><small>Idioma: @item.language</small></li>
+                <li class="list-group-item text-right">
+                    <button type="button" class="btn btn-info btn-sm">Lo quiero</button>
+                    <button type="button" class="btn btn-secondary btn-sm">Lo tengo</button>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+<div data-toggle="modal" data-target="#exampleModal" class="position-absolute fixed-bottom text-right" style="margin:10px; color: #515A5A;">
+    <i style="cursor:pointer;text-shadow: 5px 5px 5px #ccc;" class="fas fa-plus-circle fa-4x"></i>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("Create", "Libroes", FormMethod.Post))
+             {
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar libro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        @Html.TextBox("title", null, new { @class = "form-control", id = "txtAlias", placeholder = "Título" })
+                        @Html.ValidationMessage("title", "", new { @class = "invalid - feedback" })
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBox("author", null, new { @class = "form-control", id = "txtAlias", placeholder = "Autor" })
+                        @Html.ValidationMessage("author", "", new { @class = "invalid - feedback" })
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.TextBox("photo", null, new { @class = "form-control", id = "txtAlias", placeholder = "Imagen (URL Ej: http://www.pagina.com/imagenes/img.png)" })
+                        @Html.ValidationMessage("photo", "", new { @class = "invalid - feedback" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextArea("synopsis", null, new { @class = "form-control", id = "txtAlias", placeholder = "Sinopsis" })
+                        @Html.ValidationMessage("synopsis", "", new { @class = "invalid - feedback" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+             }
+         </div>
+    </div>
+</div>

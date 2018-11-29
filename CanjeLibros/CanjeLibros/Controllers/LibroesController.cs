@@ -8,11 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using CanjeLibros.Models;
 
-namespace CanjeLibros.App_Data
+namespace CanjeLibros.Controllers
 {
     public class LibroesController : Controller
     {
-        private UsuarioDBContext db = new UsuarioDBContext();
+        private DbContextLibros db = new DbContextLibros();
 
         // GET: Libroes
         public ActionResult Index()
@@ -27,12 +27,12 @@ namespace CanjeLibros.App_Data
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Libro libro = db.Libroes.Find(id);
-            if (libro == null)
+            Libroes libroes = db.Libroes.Find(id);
+            if (libroes == null)
             {
                 return HttpNotFound();
             }
-            return View(libro);
+            return View(libroes);
         }
 
         // GET: Libroes/Create
@@ -45,17 +45,21 @@ namespace CanjeLibros.App_Data
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,title,author,editorial,publishingDate,genre,synopsis,language,photo")] Libro libro)
+        public ActionResult Create([Bind(Include = "ID,title,author,editorial,publishingDate,genre,synopsis,language,photo")] Libroes libroes)
         {
             if (ModelState.IsValid)
             {
-                db.Libroes.Add(libro);
+                if(libroes.photo == null)
+                {
+                    libroes.photo = "https://www.freeiconspng.com/uploads/no-image-icon-6.png";
+                }
+
+                db.Libroes.Add(libroes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(libro);
+            return View(libroes);
         }
 
         // GET: Libroes/Edit/5
@@ -65,12 +69,12 @@ namespace CanjeLibros.App_Data
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Libro libro = db.Libroes.Find(id);
-            if (libro == null)
+            Libroes libroes = db.Libroes.Find(id);
+            if (libroes == null)
             {
                 return HttpNotFound();
             }
-            return View(libro);
+            return View(libroes);
         }
 
         // POST: Libroes/Edit/5
@@ -78,15 +82,15 @@ namespace CanjeLibros.App_Data
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title,author,editorial,publishingDate,genre,synopsis,language,photo")] Libro libro)
+        public ActionResult Edit([Bind(Include = "ID,title,author,editorial,publishingDate,genre,synopsis,language,photo")] Libroes libroes)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(libro).State = EntityState.Modified;
+                db.Entry(libroes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(libro);
+            return View(libroes);
         }
 
         // GET: Libroes/Delete/5
@@ -96,12 +100,12 @@ namespace CanjeLibros.App_Data
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Libro libro = db.Libroes.Find(id);
-            if (libro == null)
+            Libroes libroes = db.Libroes.Find(id);
+            if (libroes == null)
             {
                 return HttpNotFound();
             }
-            return View(libro);
+            return View(libroes);
         }
 
         // POST: Libroes/Delete/5
@@ -109,8 +113,8 @@ namespace CanjeLibros.App_Data
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Libro libro = db.Libroes.Find(id);
-            db.Libroes.Remove(libro);
+            Libroes libroes = db.Libroes.Find(id);
+            db.Libroes.Remove(libroes);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

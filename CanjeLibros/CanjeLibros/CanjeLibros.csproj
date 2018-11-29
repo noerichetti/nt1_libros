@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -150,15 +152,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\ExchangesController.cs" />
-    <Compile Include="App_Data\LibroesController.cs" />
-    <Compile Include="App_Data\UsuariosController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ExchangesController.cs" />
+    <Compile Include="Controllers\LibroesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
-    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,12 +175,15 @@
       <DependentUpon>201810242334251_Initial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Exchange.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs" />
+    <Compile Include="Models\DbContextLibros.cs" />
+    <Compile Include="Models\DbContextLibrosbkp.cs" />
+    <Compile Include="Models\Exchanges.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Libro.cs" />
-    <Compile Include="Models\Usuario.cs" />
-    <Compile Include="Models\UsuarioDBContext.cs" />
+    <Compile Include="Models\Libroes.cs" />
+    <Compile Include="Models\Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +217,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libros.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Web.config">
@@ -236,10 +240,19 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Exchanges\Create.cshtml" />
+    <Content Include="Views\Exchanges\Delete.cshtml" />
+    <Content Include="Views\Exchanges\Details.cshtml" />
+    <Content Include="Views\Exchanges\Edit.cshtml" />
+    <Content Include="Views\Exchanges\Index.cshtml" />
+    <Content Include="Views\Libroes\Create.cshtml" />
+    <Content Include="Views\Libroes\Delete.cshtml" />
+    <Content Include="Views\Libroes\Details.cshtml" />
+    <Content Include="Views\Libroes\Edit.cshtml" />
+    <Content Include="Views\Libroes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Exchanges\" />
-    <Folder Include="Views\Libroes\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

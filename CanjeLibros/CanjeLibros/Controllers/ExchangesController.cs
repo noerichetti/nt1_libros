@@ -8,109 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using CanjeLibros.Models;
 
-namespace CanjeLibros.App_Data
+namespace CanjeLibros.Controllers
 {
-    public class UsuariosController : Controller
+    public class ExchangesController : Controller
     {
-        private UsuarioDBContext db = new UsuarioDBContext();
+        private DbContextLibros db = new DbContextLibros();
 
-        // GET: Usuarios
+        // GET: Exchanges
         public ActionResult Index()
         {
-            return View(db.Usuarios.ToList());
+            return View(db.Exchanges.ToList());
         }
 
-        // GET: Usuarios/Details/5
-        public ActionResult Details(string id)
+        // GET: Exchanges/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Exchanges exchanges = db.Exchanges.Find(id);
+            if (exchanges == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(exchanges);
         }
 
-        // GET: Usuarios/Create
+        // GET: Exchanges/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Usuarios/Create
+        // POST: Exchanges/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,userName,name,lastName,email,password,location,phone")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "ID,idUser1,idUser2,idBook1,idBook2,done")] Exchanges exchanges)
         {
             if (ModelState.IsValid)
             {
-                db.Usuarios.Add(usuario);
+                db.Exchanges.Add(exchanges);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            return View(exchanges);
         }
 
-        // GET: Usuarios/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Exchanges/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Exchanges exchanges = db.Exchanges.Find(id);
+            if (exchanges == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(exchanges);
         }
 
-        // POST: Usuarios/Edit/5
+        // POST: Exchanges/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,userName,name,lastName,email,password,location,phone")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "ID,idUser1,idUser2,idBook1,idBook2,done")] Exchanges exchanges)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
+                db.Entry(exchanges).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(usuario);
+            return View(exchanges);
         }
 
-        // GET: Usuarios/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Exchanges/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Exchanges exchanges = db.Exchanges.Find(id);
+            if (exchanges == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(exchanges);
         }
 
-        // POST: Usuarios/Delete/5
+        // POST: Exchanges/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            db.Usuarios.Remove(usuario);
+            Exchanges exchanges = db.Exchanges.Find(id);
+            db.Exchanges.Remove(exchanges);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

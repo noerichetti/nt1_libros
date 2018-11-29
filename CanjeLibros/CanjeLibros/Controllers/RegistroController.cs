@@ -1,38 +1,38 @@
-﻿using CanjeLibros.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using CanjeLibros.Models;
 
 namespace CanjeLibros.Controllers
 {
     public class RegistroController : Controller
     {
-        private UsuarioDBContext db = new UsuarioDBContext();
+        private DbContextLibros db = new DbContextLibros();
 
-        // GET: Registro
+        // GET: Usuarios/Create
         public ActionResult Index()
         {
             return View();
         }
 
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "ID,userName,name,lastName,email,password,location,phone")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "ID,userName,name,lastName,email,password,location,phone")] Usuarios usuario)
         {
             if (ModelState.IsValid)
             {
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("UserCreated", new RouteValueDictionary(new { controller = "Login", action = "UserCreated", registroExitoso = true }));
             }
 
-            ModelState.AddModelError("userName", "You must complete.");
-
-            return View("Index");
+            return View(usuario);
         }
 
         protected override void Dispose(bool disposing)
