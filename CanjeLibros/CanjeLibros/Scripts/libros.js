@@ -1,3 +1,3 @@
 ﻿$(function () {
-    $('#libroDescripcion').popover()
+    $('[data-toggle="popover"]').popover({container: 'body'})
 });
